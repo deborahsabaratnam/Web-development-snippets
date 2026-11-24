@@ -1,0 +1,336 @@
+
+/* ========================================
+   GLOBAL STYLES
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(
+        ellipse at center,
+        #A9C3FF 0%,
+        #C5D6FF 45%,
+        #A9C3FF 85%
+    );
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+
+    font-family: Arial, sans-serif;
+    color: #F5F7FB;
+}
+
+
+/* ========================================
+   SLIDER CONTAINER
+======================================== */
+
+.slider {
+    width: 90%;
+    max-width: 900px;
+    height: 380px;
+
+    position: relative;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+}
+
+
+/* ========================================
+   INDIVIDUAL SLIDES
+======================================== */
+
+.slide {
+    width: 190px;
+    height: 260px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(
+        145deg,
+        #142B4D 0%,
+        #0B162B 100%
+    );
+
+    color: #F5F7FB;
+    font-size: 32px;
+    font-weight: 600;
+
+    border-radius: 18px;
+    border: 1px solid rgba(169, 195, 255, 0.25);
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.55),
+        inset 0 0 35px rgba(11, 22, 43, 0.6);
+
+    transform: translate(-50%, -50%);
+
+    transition:
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.3s ease,
+        box-shadow 0.5s ease,
+        filter 0.5s ease,
+        border-color 0.5s ease;
+
+    overflow: hidden;
+    will-change: transform;
+
+    backface-visibility: hidden;
+}
+
+
+/* ========================================
+   DARK SHADED CORNERS
+======================================== */
+
+.slide::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+    pointer-events: none;
+
+    background: radial-gradient(
+        ellipse at center,
+        transparent 30%,
+        rgba(11, 22, 43, 0.75) 100%
+    );
+}
+
+
+/* ========================================
+   ACTIVE / SELECTED SLIDE
+======================================== */
+
+.slide.active {
+    background: linear-gradient(
+        145deg,
+        #254875 0%,
+        #142B4D 65%,
+        #0B162B 100%
+    );
+
+    border-color: #A9C3FF;
+
+    box-shadow:
+        0 30px 65px rgba(0, 0, 0, 0.7),
+        0 0 30px rgba(169, 195, 255, 0.25);
+
+    filter: brightness(1.15);
+}
+
+
+/* ========================================
+   NAVIGATION CONTAINER
+======================================== */
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 18px;
+    margin-top: 10px;
+}
+
+
+/* ========================================
+   NAVIGATION BUTTONS
+======================================== */
+
+.controls button {
+    position: relative;
+    overflow: hidden;
+
+    padding: 13px 30px;
+
+    border-radius: 12px;
+    border: 1px solid rgba(169, 195, 255, 0.3);
+
+    background: linear-gradient(
+        135deg,
+        #142B4D,
+        #0B162B
+    );
+
+    color: #F5F7FB;
+
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.35);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+/* ========================================
+   BUTTON HOVER EFFECT
+======================================== */
+
+.controls button:hover {
+    transform: translateY(-4px) scale(1.05);
+
+    background: linear-gradient(
+        135deg,
+        #A9C3FF,
+        #142B4D
+    );
+
+    border-color: #C5D6FF;
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(169, 195, 255, 0.35);
+}
+
+
+/* ========================================
+   BUTTON CLICK ANIMATION
+======================================== */
+
+.controls button:active {
+    transform: translateY(0) scale(0.95);
+}
+
+
+/* ========================================
+   BUTTON LIGHT SWEEP ANIMATION
+======================================== */
+
+.controls button::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(197, 214, 255, 0.35),
+        transparent
+    );
+
+    transform: skewX(-20deg);
+
+    transition: left 0.55s ease;
+}
+
+.controls button:hover::before {
+    left: 150%;
+}
+
+
+/* ========================================
+   KEYBOARD FOCUS
+======================================== */
+
+.controls button:focus-visible {
+    outline: 2px solid #A9C3FF;
+    outline-offset: 4px;
+}
+
+
+/* ========================================
+   RESPONSIVE - TABLET
+======================================== */
+
+@media (max-width: 768px) {
+
+    .slider {
+        width: 100%;
+        height: 330px;
+        perspective: 900px;
+    }
+
+    .slide {
+        width: 150px;
+        height: 210px;
+        font-size: 26px;
+        border-radius: 14px;
+    }
+
+    .controls {
+        gap: 14px;
+        margin-top: 5px;
+    }
+
+    .controls button {
+        padding: 12px 24px;
+        font-size: 12px;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE - MOBILE
+======================================== */
+
+@media (max-width: 480px) {
+
+    .slider {
+        width: 100%;
+        height: 280px;
+        perspective: 700px;
+    }
+
+    .slide {
+        width: 115px;
+        height: 170px;
+        font-size: 22px;
+        border-radius: 12px;
+    }
+
+    .controls {
+        gap: 12px;
+        margin-top: 5px;
+    }
+
+    .controls button {
+        padding: 11px 20px;
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION ACCESSIBILITY
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .slide,
+    .controls button,
+    .controls button::before {
+        transition: none;
+    }
+}
