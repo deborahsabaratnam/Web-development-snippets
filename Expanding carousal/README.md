@@ -1,6 +1,6 @@
-# 3D Image Slider
+# Expanding Carousal
 
-A creative 3D image slider built using HTML and CSS to transform a traditional image gallery into an interactive visual experience.
+A creative Expanding carousal built using HTML and CSS to transform a traditional image gallery into an interactive visual experience.
 
 ## Technologies Used
 - HTML5
@@ -8,7 +8,7 @@ A creative 3D image slider built using HTML and CSS to transform a traditional i
 
 ## How to Use
 1. Download or clone this repository.
-2. Open the `3d-image-slider` folder.
+2. Open the `Expanding Carousal` folder.
 3. Open `index.html` in your browser.
 4. Replace the images and customise the styles as needed.
 
